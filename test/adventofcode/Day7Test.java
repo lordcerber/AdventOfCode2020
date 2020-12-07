@@ -66,7 +66,7 @@ public class Day7Test {
 
         Logger.getGlobal().info("answer is "+ result);
 
-        Assert.assertTrue(result == 421550);
+        Assert.assertTrue(result == 176035);
     }
 
 
