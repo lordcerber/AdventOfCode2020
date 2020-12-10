@@ -64,7 +64,7 @@ public class Day9 {
     }
 
     public static Long solveTask2 (List<Long> input, Long target) {
-        //oh idea! ill keep going with dynamic deque as floating summ!
+        //oh idea! ill keep going with dynamic deque as sliding summ!
         Deque<Long> buffer = new ArrayDeque<Long>();
 
         Long bufferedSumm = 0l; // i dont want to iterate deque each time
