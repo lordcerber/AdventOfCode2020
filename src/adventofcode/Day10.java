@@ -79,6 +79,27 @@ public class Day10 {
         return answer;
     }
 
+    public long solveTask2NoMemory(List<Long> report) {
+        HashMap<Long, Connector> map = new HashMap<Long, Connector>();
+        List<Integer> deltas = List.of(1,2,3);
+
+        report.sort(Long::compareTo);
+
+        map.put(0L,new Connector(0L));
+
+        loop:
+        for (Long tock : report) {
+            Connector con = new Connector(tock);
+            map.put(tock, con);
+            for (int d:deltas) {
+                if (map.containsKey(tock-d)) map.get(tock-d).addLink(con);
+            }
+        }
+        //last one is always a single 3 connector so no counting;
+        Long answer = map.get(0L).getTreeNoMemory();
+        return answer;
+    }
+
     private class Connector {
         private final Long self;
         private HashMap <Connector, Long> links = new HashMap<>();
@@ -104,17 +125,24 @@ public class Day10 {
             links.put(tock, tock.self - this.self);
         }
 
-        Long tree; //this i hope reduses calculation time;
+        Long tree; //this greatly reduses calculation time;
         public Long getTree() {
             if (tree == null) {
                 AtomicLong summ = new AtomicLong(links.size()>0 ? links.size():1);
-                //even more crazy recursion
                 links.forEach((link, b) -> {
                     summ.addAndGet(link.getTree() - 1);
                 });
                 tree = summ.get();
             }
             return tree;
+        }
+
+        public Long getTreeNoMemory() {
+                AtomicLong summ = new AtomicLong(links.size()>0 ? links.size():1);
+                links.forEach((link, b) -> {
+                    summ.addAndGet(link.getTreeNoMemory() - 1);
+                });
+            return summ.get();
         }
     }
 }

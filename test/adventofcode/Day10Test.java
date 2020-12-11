@@ -32,6 +32,19 @@ public class Day10Test {
         Assert.assertTrue(result == 2738);
     }
 
+    @Test
+    public void compareCalculationTime () {
+        List<Long> input = Day10.convertInput(Day10.getPuzzleInput());
+        long time = System.currentTimeMillis();
+        Long result = Day10.getInstance().solveTask2(input);
+        Logger.getGlobal().info("answer is "+ result+ "took " + (System.currentTimeMillis()-time) + "ms");
+        time = System.currentTimeMillis();
+        Long result2 = Day10.getInstance().solveTask2NoMemory(input);
+        Logger.getGlobal().info("answer is "+ result2+ "took " + (System.currentTimeMillis()-time) + "ms");
+
+        Assert.assertTrue(result.equals(result2));
+    }
+
 
 
 
