@@ -36,21 +36,19 @@ public class Solution {
 
     public long solveTask1 (List<String> input) {
         field = new Field(input, "L");
-            //Logger.getGlobal().info(Solution.getInstance().field.toString());
+            //Logger.getGlobal().info(field.toString());
         while (field.advanceTimeRule1()>0L) {
-            //Logger.getGlobal().info(Solution.getInstance().field.toString());
+            //Logger.getGlobal().info(field.toString());
         }
-
         return field.countActiveCells();
     }
 
     public long solveTask2 (List<String> input) {
         field = new Field(input, "L");
-            //Logger.getGlobal().info(Solution.getInstance().field.toString());
+            //Logger.getGlobal().info(field.toString());
         while (field.advanceTimeRule2()>0L) {
-            //Logger.getGlobal().info(Solution.getInstance().field.toString());
+            //Logger.getGlobal().info(field.toString());
         }
-
         return field.countActiveCells();
     }
 
