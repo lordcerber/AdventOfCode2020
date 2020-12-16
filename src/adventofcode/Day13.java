@@ -175,26 +175,18 @@ public class Day13 {
             //so after first meeting up, each two busses will be meeting in equal periods of time.
             if (others.size() > 1) {
                 Bus bus2 = others.remove(0);
-                System.out.println("racing " + this.toString() + bus2.toString());
-                long t = System.currentTimeMillis();
                 while (!bus2.catchUp2(pos)) catchUp2(bus2.pos);
-                System.out.println("race done at" + this.toString() + bus2.toString() + "in " + (System.currentTimeMillis()-t)+"ms");
                 //here we have bus1 and bus2 on the same position pos
                 BigDecimal period = calcDistance(this.id, bus2.id);
                 Bus chimera = new Bus(period, this.pos);
-                System.out.println(this.toString() + bus2.toString() + "formed chimera as "+chimera.toString());
                 others.add(chimera);
                 Collections.sort(others);
-                //Collections.reverse(others);
                 return others.remove(0).runWith(others);
             }
             else {
                 //other.size=1
                 Bus bus2 = others.remove(0);
-                System.out.println("racing " + this.toString() + bus2.toString());
-                long t = System.currentTimeMillis();
                 while (!bus2.catchUp2(pos)) catchUp2(bus2.pos);
-                System.out.println("race done at" + this.toString() + bus2.toString() + "in " + (System.currentTimeMillis()-t)+"ms");
                 return pos;
             }
 
